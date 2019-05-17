@@ -3,7 +3,7 @@ a js/donet/.. fiddle
 
 ## Goal 
 Goal of this project is to experiment with webassembly.
-Idea came from the Try .net me  Microsofot -  (https://devblogs.microsoft.com/dotnet/creating-interactive-net-documentation/)[https://devblogs.microsoft.com/dotnet/creating-interactive-net-documentation/]
+Idea came from the [Try .Net](https://devblogs.microsoft.com/dotnet/creating-interactive-net-documentation/) from Microsoft.
 
 And I always like the always of the *fiddle, for example [JSFiddle](https://jsfiddle.net/) or [DotNetFiddle](https://dotnetfiddle.net/)
 

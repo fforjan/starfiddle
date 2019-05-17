@@ -1,7 +1,7 @@
 # starfiddle
 a js/donet/.. fiddle 
 
-# Goal 
+## Goal 
 Goal of this project is to experiment with webassembly.
 Idea came from the Try .net me  Microsofot -  (https://devblogs.microsoft.com/dotnet/creating-interactive-net-documentation/)[https://devblogs.microsoft.com/dotnet/creating-interactive-net-documentation/]
 
@@ -9,12 +9,12 @@ And I always like the always of the *fiddle, for example [JSFiddle](https://jsfi
 
 Would it be possibe to compile any Hello World to webassembly and execute this into the web browser ?
 
-# Hello world ?
+## Hello world ?
 My personal usage of a fiddle is to be able to enter 10/20 lines of code to try something and share it with someone else.
 
 Goal is not to create full editor in line.
 
-# targetted languages
+## targetted languages
 
 |Language   | Compiler  |
 |---|---|

@@ -1,5 +1,5 @@
 # starfiddle
-a js/donet/.. fiddle 
+a TS/donet/.. fiddle 
 
 ## Goal 
 Goal of this project is to experiment with webassembly.

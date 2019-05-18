@@ -1,4 +1,6 @@
 import * as express from 'express';
+import * as asc from 'assemblyscript/cli/asc';
+
 import Code from '../code.interface';
 
 class TypescriptController {
@@ -10,12 +12,29 @@ class TypescriptController {
     }
    
     public initializeRoutes() {
-      this.router.get(this.path, this.compile);
+      this.router.get(this.path, this.compileRequest);
     }
    
-    compile = (request: express.Request, response: express.Response) => {
-        const post: Code = request.body;
-        response.send(post);
+    compileRequest = (request: express.Request, response: express.Response) => {
+        response.send(this.compile("export function func(): string { return 'Hello World';} "));
+    }
+
+    compile(source: string) : { binary : Uint8Array, stdout:string, stderr:string } {
+ 
+      let output : any= {};
+      let compiled = asc.compileString(source);
+      
+      if(compiled.stderr)  {
+        output.stderr = compiled.stderr.toString();
+      }
+
+      if(compiled.stdout)  {
+        output.stdout = compiled.stdout.toString();
+      }
+
+      output.binary = compiled.binary;
+
+      return output;
     }
   }
    

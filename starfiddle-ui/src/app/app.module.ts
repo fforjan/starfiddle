@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { SfEditorComponent } from './sf-editor/sf-editor.component';
 
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { SfOutputComponent } from './sf-output/sf-output.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SfEditorComponent
+    SfEditorComponent,
+    SfOutputComponent
   ],
   imports: [
     BrowserModule,

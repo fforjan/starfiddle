@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SfEditorComponent implements OnInit {
 
+  editorOptions = {theme: 'vs-dark', language: 'typescript'};
+  code = 'export function entry() {\nconsole.log("Hello world!");\n}';
+
   constructor() { }
 
   ngOnInit() {

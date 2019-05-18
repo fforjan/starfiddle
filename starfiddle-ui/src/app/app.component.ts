@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CodeDefinition } from './code.definition';
 import { CodeCompiled } from './code.compiled';
 import { CodeExecuted } from './code.executed';
+import { CompileService } from './compile.service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +10,18 @@ import { CodeExecuted } from './code.executed';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'starfiddle-ui';
+  title = 'starfiddle';
 
   executedCode: CodeExecuted;
 
-  compileAndExecuteDefinition(codeDefinition: CodeDefinition) {
-    this.executedCode = this.requestExecute(this.requestCompile(codeDefinition));
+  constructor(private svc: CompileService) {
   }
 
-  requestCompile(codeDefinition: CodeDefinition): CodeCompiled {
-
-    return new CodeCompiled(codeDefinition.code);
+  compileAndExecuteDefinition(codeDefinition: CodeDefinition) {
+    this.executedCode = this.requestExecute(this.svc.requestCompile(codeDefinition));
   }
 
   requestExecute(codeCompiled: CodeCompiled): CodeExecuted {
-
     return new CodeExecuted(codeCompiled.result);
   }
 

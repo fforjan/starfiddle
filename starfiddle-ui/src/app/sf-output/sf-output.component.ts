@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SfOutputComponent implements OnInit {
 
+  output = 'bonjour le monde';
+
   constructor() { }
 
   ngOnInit() {

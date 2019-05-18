@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CodeDefinition } from './code.definition';
 import { CodeCompiled } from './code.compiled';
+import { CodeExecuted } from './code.executed';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +11,20 @@ import { CodeCompiled } from './code.compiled';
 export class AppComponent {
   title = 'starfiddle-ui';
 
-  output = '';
+  executedCode: CodeExecuted;
 
-  compileDefinition(codeDefinition: CodeDefinition) {
-    const compile = this.requestCompile(codeDefinition);
-    this.output = compile.result;
+  compileAndExecuteDefinition(codeDefinition: CodeDefinition) {
+    this.executedCode = this.requestExecute(this.requestCompile(codeDefinition));
   }
 
   requestCompile(codeDefinition: CodeDefinition): CodeCompiled {
 
     return new CodeCompiled(codeDefinition.code);
+  }
+
+  requestExecute(codeCompiled: CodeCompiled): CodeExecuted {
+
+    return new CodeExecuted(codeCompiled.result);
   }
 
  }

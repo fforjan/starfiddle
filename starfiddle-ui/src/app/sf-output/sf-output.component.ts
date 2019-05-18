@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CodeExecuted } from '../code.executed';
 
 @Component({
   selector: 'app-sf-output',
@@ -7,11 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SfOutputComponent implements OnInit {
 
-  @Input() output: string;
+  output: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  @Input('executedCode')
+  set executedCode(executedCode: CodeExecuted) {
+    this.output = executedCode.output;
   }
 
 }

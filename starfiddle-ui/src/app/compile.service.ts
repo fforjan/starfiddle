@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CodeDefinition } from './code.definition';
 import { CodeCompiled } from './code.compiled';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompileService {
 
-  constructor() { }
+  private url = '/api/typescript';
 
-  requestCompile(codeDefinition: CodeDefinition): CodeCompiled {
+  constructor(private http: HttpClient) { }
 
-    return new CodeCompiled(codeDefinition.code);
+  getLibraries(): Observable<any> {
+    return this.http.get<any>(this.url);
+  }
+
+  requestCompile(codeDefinition: CodeDefinition): Observable<CodeCompiled> {
+    return of(new CodeCompiled(codeDefinition.code));
   }
 }

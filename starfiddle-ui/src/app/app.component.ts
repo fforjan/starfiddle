@@ -18,7 +18,9 @@ export class AppComponent {
   }
 
   compileAndExecuteDefinition(codeDefinition: CodeDefinition) {
-    this.executedCode = this.requestExecute(this.svc.requestCompile(codeDefinition));
+    this.svc.requestCompile(codeDefinition).subscribe( compiled =>  {
+      this.executedCode = this.requestExecute(compiled);
+    });
   }
 
   requestExecute(codeCompiled: CodeCompiled): CodeExecuted {

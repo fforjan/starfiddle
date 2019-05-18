@@ -19,17 +19,17 @@ class TypescriptController {
         response.send(this.compile("export function func(): string { return 'Hello World';} "));
     }
 
-    compile(source: string) : { binary : Uint8Array, stdout:string, stderr:string } {
+    compile(source: string) : { binary : Uint8Array, messages:string, errors:string } {
  
       let output : any= {};
       let compiled = asc.compileString(source);
       
       if(compiled.stderr)  {
-        output.stderr = compiled.stderr.toString();
+        output.errors = compiled.stderr.toString();
       }
 
       if(compiled.stdout)  {
-        output.stdout = compiled.stdout.toString();
+        output.messages = compiled.stdout.toString();
       }
 
       output.binary = compiled.binary;

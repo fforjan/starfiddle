@@ -4,7 +4,7 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<app-sf-editor>
+<app-sf-editor (compileRequested)='compileDefinition($event)' >
 </app-sf-editor>
-<app-sf-output>
+<app-sf-output [output]="output">
   </app-sf-output>

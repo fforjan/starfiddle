@@ -14,13 +14,11 @@ import * as Base64Binary from 'base64-arraybuffer';
 })
 export class CompileService {
 
-  private url = '/api/typescript';
-
   constructor(private http: HttpClient) {
   }
 
-  compile(sourceCode: SourceCode): Observable<Compilation> {
-    return this.http.post<Compilation>(this.url, sourceCode);
+  compile(language: string, sourceCode: SourceCode): Observable<Compilation> {
+    return this.http.post<Compilation>(`/api/${language}`, sourceCode);
   }
 
   convert(compilation: Compilation): CodeCompiled {
@@ -32,6 +30,6 @@ export class CompileService {
   }
 
   requestCompile(codeDefinition: CodeDefinition): Observable<CodeCompiled> {
-    return map(this.convert)(this.compile({filename: 'foo.ts', content: codeDefinition.code}));
+    return map(this.convert)(this.compile(codeDefinition.language, {filename: 'foo.ts', content: codeDefinition.code}));
   }
 }

@@ -12,7 +12,7 @@ import { CompileService } from './compile.service';
 export class AppComponent {
   title = 'starfiddle';
 
-  executedCode: CodeExecuted;
+  executedCode: CodeExecuted | CodeCompiled;
 
   constructor(private svc: CompileService) {
   }
@@ -23,8 +23,8 @@ export class AppComponent {
     });
   }
 
-  requestExecute(codeCompiled: CodeCompiled): CodeExecuted {
-    return new CodeExecuted(codeCompiled.result);
+  requestExecute(codeCompiled: CodeCompiled): CodeExecuted | CodeCompiled {
+    return codeCompiled;
   }
 
  }

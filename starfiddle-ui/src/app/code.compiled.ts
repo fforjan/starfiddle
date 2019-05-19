@@ -1,4 +1,4 @@
 export class CodeCompiled {
 
-    constructor(public result: string) {}
+    constructor(public result: boolean, public compileMessage?: string, public compileErrors?: string) {}
 }

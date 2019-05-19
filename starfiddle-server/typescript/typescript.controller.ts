@@ -14,7 +14,7 @@ class TypescriptController {
   }
 
   public initializeRoutes() {
-    this.router.get(this.path, this.compileRequest);
+    this.router.post(this.path, this.compileRequest);
   }
 
   compileRequest = (request: express.Request, response: express.Response) => {

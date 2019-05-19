@@ -22,16 +22,8 @@ export class ExecuteService {
       }
     };
 
-    // The above is equivalent to
-    const meta = [
-  [ 'Content-Type', 'application/wasm' ]
-];
-
-    const init: ResponseInit = { status : 200 , statusText : 'ok!', headers: new Headers(meta)
-  };
-
     try {
-    const result = await WebAssembly.instantiateStreaming(new Response(new Blob([compiled.wasmCode]), init), importObject);
+    const result = await WebAssembly.instantiateStreaming(compiled.asResponse(), importObject);
 
     const returnedValue = result.instance.exports.main();
     if (returnedValue !== undefined) {

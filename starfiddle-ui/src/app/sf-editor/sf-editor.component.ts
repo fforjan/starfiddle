@@ -8,6 +8,15 @@ import {CodeDefinition} from '../code.definition';
 })
 export class SfEditorComponent implements OnInit {
 
+  codeBuffer = {
+    typescript: `export function main(): number {
+      return 42;
+  }`,
+    cpp: `int main() {
+      return 42;
+    }`
+  };
+
   @Output() compileRequested = new EventEmitter();
 
   set selectedLanguage(value: string) {
@@ -19,10 +28,14 @@ export class SfEditorComponent implements OnInit {
   }
 
   editorOptions = {theme: 'vs-dark', language: 'typescript'};
-  code = `export function main(): number {
 
-    return 42;
-}`;
+  set code(value: string) {
+    this.codeBuffer[this.editorOptions.language] = value;
+  }
+
+  get code() {
+    return this.codeBuffer[this.editorOptions.language];
+  }
 
   constructor() { }
 

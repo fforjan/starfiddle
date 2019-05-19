@@ -25,8 +25,8 @@ export class CompileService {
 
   convert(compilation: Compilation): CodeCompiled {
     return new CodeCompiled(
-      !util.isNullOrUndefined(compilation.errors),
-      Base64Binary.decode(compilation.binary),
+      !Boolean(compilation.errors),
+      util.isNullOrUndefined(compilation.binary) ? null : Base64Binary.decode(compilation.binary),
       compilation.messages,
       compilation.errors);
   }

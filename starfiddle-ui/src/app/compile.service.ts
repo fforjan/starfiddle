@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import SourceCode from '../contracts/sourcecode.interface';
 import Compilation from '../contracts/compilation.interface';
 import * as util from 'util';
+import * as Base64Binary from 'base64-arraybuffer';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,11 @@ export class CompileService {
   }
 
   convert(compilation: Compilation): CodeCompiled {
-    return new CodeCompiled(!util.isNullOrUndefined(compilation.errors), compilation.binary, compilation.messages, compilation.errors);
+    return new CodeCompiled(
+      !util.isNullOrUndefined(compilation.errors),
+      Base64Binary.decode(compilation.binary),
+      compilation.messages,
+      compilation.errors);
   }
 
   requestCompile(codeDefinition: CodeDefinition): Observable<CodeCompiled> {

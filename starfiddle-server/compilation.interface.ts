@@ -1,6 +1,6 @@
 interface Compilation 
 { 
-    binary ?: Uint8Array;
+    binary ?: string;
     messages?:string;
     errors?:string;
 };

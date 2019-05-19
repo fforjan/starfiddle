@@ -1,4 +1,4 @@
 export class CodeCompiled {
 
-    constructor(public result: boolean, public wasmCode: Uint8Array, public compileMessage?: string, public compileErrors?: string) {}
+    constructor(public result: boolean, public wasmCode: ArrayBuffer, public compileMessage?: string, public compileErrors?: string) {}
 }

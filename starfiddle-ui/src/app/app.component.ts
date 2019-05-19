@@ -3,6 +3,8 @@ import { CodeDefinition } from './code.definition';
 import { CodeCompiled } from './code.compiled';
 import { CodeExecuted } from './code.executed';
 import { CompileService } from './compile.service';
+import { ExecuteService } from './execute.service';
+import { Observable, of, from } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +16,20 @@ export class AppComponent {
 
   executedCode: CodeExecuted | CodeCompiled;
 
-  constructor(private svc: CompileService) {
+  constructor(private compileService: CompileService, private executeService: ExecuteService) {
   }
 
   compileAndExecuteDefinition(codeDefinition: CodeDefinition) {
-    this.svc.requestCompile(codeDefinition).subscribe( compiled =>  {
-      this.executedCode = this.requestExecute(compiled);
+    this.compileService.requestCompile(codeDefinition).subscribe( compiled =>  {
+      this.requestExecute(compiled).subscribe(executed => this.executedCode = executed);
     });
   }
 
-  requestExecute(codeCompiled: CodeCompiled): CodeExecuted | CodeCompiled {
-    return codeCompiled;
+  requestExecute(codeCompiled: CodeCompiled): Observable<CodeExecuted | CodeCompiled> {
+    if (codeCompiled.result) {
+      return from(this.executeService.Execute(codeCompiled));
+    }
+    return of(codeCompiled);
   }
 
  }

@@ -23,7 +23,7 @@ export class CompileService {
   }
 
   convert(compilation: Compilation): CodeCompiled {
-    return new CodeCompiled(!util.isNullOrUndefined(compilation.errors), compilation.messages, compilation.errors);
+    return new CodeCompiled(!util.isNullOrUndefined(compilation.errors), compilation.binary, compilation.messages, compilation.errors);
   }
 
   requestCompile(codeDefinition: CodeDefinition): Observable<CodeCompiled> {

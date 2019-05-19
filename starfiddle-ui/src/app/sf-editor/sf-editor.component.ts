@@ -15,9 +15,7 @@ export class SfEditorComponent implements OnInit {
     function log(s: string): void;
 }
 
-// declare let console: Console;
-
-export function entry(): void {
+export function main(): void {
 
     console.log("Hello world");
 }`;

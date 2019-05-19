@@ -11,13 +11,9 @@ export class SfEditorComponent implements OnInit {
   @Output() compileRequested = new EventEmitter();
 
   editorOptions = {theme: 'vs-dark', language: 'typescript'};
-  code = `declare namespace console {
-    function log(s: string): void;
-}
+  code = `export function main(): number {
 
-export function main(): void {
-
-    console.log("Hello world");
+    return 42;
 }`;
 
   constructor() { }

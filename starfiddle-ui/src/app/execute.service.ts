@@ -33,8 +33,10 @@ export class ExecuteService {
     try {
     const result = await WebAssembly.instantiateStreaming(new Response(new Blob([compiled.wasmCode]), init), importObject);
 
-    (result.instance as any).export.main();
-
+    const returnedValue = result.instance.exports.main();
+    if (returnedValue !== undefined) {
+      buffer += '\n' + returnedValue.toString();
+    }
     return new CodeExecuted(buffer);
 
     } catch (e) {

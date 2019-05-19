@@ -10,6 +10,14 @@ export class SfEditorComponent implements OnInit {
 
   @Output() compileRequested = new EventEmitter();
 
+  set selectedLanguage(value: string) {
+    this.editorOptions = {theme: 'vs-dark', language: value};
+  }
+
+  get selectedLanguage() {
+    return this.editorOptions.language;
+  }
+
   editorOptions = {theme: 'vs-dark', language: 'typescript'};
   code = `export function main(): number {
 
@@ -22,7 +30,7 @@ export class SfEditorComponent implements OnInit {
   }
 
   compileCode() {
-    this.compileRequested.emit(new CodeDefinition(this.code));
+    this.compileRequested.emit(new CodeDefinition(this.code, this.editorOptions.language));
   }
 
 }

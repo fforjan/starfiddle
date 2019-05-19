@@ -1,4 +1,8 @@
 <p>
+  <select [(ngModel)]="selectedLanguage" >
+    <option>typescript</option>
+    <option>cpp</option>
+  </select>
   <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
   <button (click)="compileCode()">Execute</button>
 </p>

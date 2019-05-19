@@ -45,7 +45,7 @@ class TypescriptController {
     }
 
     if (compiled.binary) {
-      output.binary = new Buffer(compiled.binary).toString('base64');
+      output.binary = Buffer.from(compiled.binary).toString('base64');
     }
     
     return output;
